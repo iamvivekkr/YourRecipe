@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>header}}
+</head>
+<body>
+    {{>navbar}}
+
+    <section class="Form my-4 mx-1">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <img src="css/signin-image.jpg" class="img-fluid  py-4 p-5" alt="" width="100%">
+                </div>
+                <div class="col-lg-7 px-5 pt-5">
+                    <h1 class="font-weight-bold py-3">Log In</h1>
+                    <form action="/login" method="POST">
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="email" placeholder="Email-Address" class="form-control my-3 py-2" name="email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="password" placeholder="*********" class="form-control my-3 py-2" name="password">
+                            </div>
+                        </div>
+                        <div class="form-row"> 
+                            <div class="col-lg-7">
+                                <button type="submit" class="btn1 mt-3 mb-3">Login</button>
+                            </div>
+                        </div>
+                        {{!-- <a href="#">Forget Password</a><br> --}}
+                        <p class="mt-3">Don't have an account? <a href="register">Signup</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>header}}
+</head>
+<body>
+    {{>navbar}}
+
+    <section class="Form my-4 mx-1">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <img src="css/signup-image.jpg" class="img-fluid mt-5 py-4 p-5" alt="">
+                </div>
+                <div class="col-lg-7 px-5 pt-5">
+                    <h1 class="font-weight-bold py-3">Sign Up</h1>
+                    <form action="/register" method="POST">
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="text" placeholder="First Name" class="form-control my-3 py-2" name="firstname">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="text" placeholder="Last Name" class="form-control my-3 py-2" name="lastname">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="email" placeholder="Email-Address" class="form-control my-3 py-2" name="email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="password" placeholder="Password" class="form-control my-3 py-2" name="password">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="password" placeholder="Confirm Password" class="form-control my-3 py-2" name="confirmpassword">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <button type="submit" class="btn1 mt-3 mb-3"class="form-control" value="Register">Create Your Account</button>
+                            </div>
+                        </div>
+                        <p>Already Registered? <a href="login">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
