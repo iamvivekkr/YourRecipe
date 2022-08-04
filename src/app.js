@@ -5,6 +5,8 @@ const app = express();
 const hbs = require("hbs");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const auth = require("./middleware/auth");
 
 const Register = require("./models/registers");
 require("./db/conn");
@@ -18,6 +20,7 @@ const partial_path = path.join(__dirname, "../templates/partials");//find partia
 
 //after fill form and submit to save data
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({extended:false}));
 
 //find views file
@@ -31,12 +34,32 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+
+
+app.get("/logout", auth, async (req, res) => {
+    try {
+        //logout from particular device
+        req.user.tokens = req.user.tokens.filter((currElement) => {
+            return currElement.token !== req.token
+        })
+        res.clearCookie("jwt");//logout from particular dev
+
+        //req.use.tokens = []      logout form all dev
+        
+        await req.user.save();
+        res.render("login");
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
 //to show register.hbs page
 app.get("/register", (req, res) => {
     res.render("register");
 });
 
-app.get("/recipe", (req, res) => {
+app.get("/recipe", auth, (req, res) => {
     res.render("recipe");
 });
 
@@ -44,6 +67,7 @@ app.get("/recipe", (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login");
 });
+
 
 
 //create new user in our database
@@ -65,8 +89,13 @@ app.post("/register", async (req, res) => {
             //jws token
             const token = await registerUser.generateAuthToken();
 
+            res.cookie("jwt", token, {
+                expires:new Date(Date.now() + 30000),
+                httpOnly:true
+           });
+
             const register = await registerUser.save();
-            res.status(201).render("login");//registration k bad index p jyega
+            res.status(201).render("login");//registration k bad login p jyega
         }else{
             res.render("register"); //if error comes
         }
@@ -86,7 +115,15 @@ app.post("/login", async(req, res) => {
        
        const isMatch = await bcrypt.compare(password, useremail.password);
 
+       //generate token
        const token = await useremail.generateAuthToken();
+
+       //cookie
+       res.cookie("jwt", token, {
+            expires:new Date(Date.now() + 600000),
+            httpOnly:true
+            //secure:true
+       });
 
        if(isMatch){
         res.status(201).render("recipe");

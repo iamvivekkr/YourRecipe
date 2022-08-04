@@ -8,13 +8,38 @@
 </head>
 
 <body>
-  {{>navbar}}
+  {{!-- navbar --}}
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="/"><img src="css/logo1.png" alt="" width="50" height="50"
+        class="d-inline-block align-text-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {{!-- <li class="nav-item">
+          <a class="nav-link active" style="color:white" href="#">Home</a>
+        </li> --}}
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a href="/logout" class="btn btn-danger mr-2">Logout</a>
+      </form>
+    </div>
+  </div>
+</nav>
+
+  
   <div class="containerr">
     <div class="meal-wrapperr">
       <div class="meal-searchh">
-        <h2 class="titlee">Find Meals For Your Ingredients</h2>
-        <blockquote class="quote">Real food doesn't have ingredients, real food is ingredients.<br>
-          <cite>- Jamie Oliver</cite>
+        <h2 class="titlee">Find Ingredients For Your Meals</h2>
+        <blockquote class="quote">A recipe has no soul. You, as the cook, must bring soul to the recipe.<br>
+          <cite>- Thomas Keller </cite>
         </blockquote>
 
         <div class="meal-search-boxx">
@@ -128,7 +153,7 @@
     }
   </script>
 
-
+{{>footer}}
 </body>
 
 </html>
